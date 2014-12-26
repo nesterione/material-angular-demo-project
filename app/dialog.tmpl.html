@@ -1,0 +1,54 @@
+<md-dialog style="margin: 0;" aria-label="Добавить">
+
+  <md-content style="padding-top: 0px;">
+  <span></span>
+<md-subheader class="md-sticky-no-effect" style="background-color: #c8ede5;">Добавить</md-subheader>
+
+ <form style="padding: 20px;">
+      <md-text-float label="Что" ng-model="todo.what"> </md-text-float>
+      <md-text-float label="Когда" ng-model="todo.when"> </md-text-float>
+      <md-text-float label="Заметка" ng-model="todo.notes"> </md-text-float>
+      
+
+
+  <p>
+      Цвет <span ng-attr-style="border: 1px solid #333; background: rgb({{todo.color.red}},{{todo.color.green}},{{todo.color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </p>
+    <div layout>
+      <div flex="10" layout layout-align="center center">
+        <span>R</span>
+      </div>
+      <md-slider flex min="0" max="255" ng-model="todo.color.red" aria-label="red" id="red-slider" class="md-warn">
+      </md-slider>
+      
+    </div>
+    <div layout>
+      <div flex="10" layout layout-align="center center">
+        <span>G</span>
+      </div>
+      <md-slider flex ng-model="todo.color.green" min="0" max="255" aria-label="green" id="green-slider" class="md-accent">
+      </md-slider>
+       
+    </div>
+    <div layout>
+      <div flex="10" layout layout-align="center center">
+        <span>B</span>
+      </div>
+      <md-slider flex ng-model="todo.color.blue" min="0" max="255" aria-label="blue" id="blue-slider">
+      </md-slider>
+       
+    </div>
+
+  </form>
+
+
+  </md-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="cancel()">
+     Отмена
+    </md-button>
+    <md-button ng-click="answer(todo)" class="md-primary">
+      Добавить
+    </md-button>
+  </div>
+</md-dialog>

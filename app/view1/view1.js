@@ -13,44 +13,49 @@ angular.module('myApp.view1', ['ngRoute','ngMaterial'])
   	
    $scope.todos = [
       {
+      	color: {
+    		red: 125,
+    		green: 5,
+    		blue: 50
+      	},
         what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
-        show: false
+        show: false,
+        visible: true // для анимации удаления
       },
       {
         what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
-        show: false
+        show: false,
+        visible: true
       },
       {
         what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
-        show: false
+        show: false,
+        visible: true
       },
       {
         what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
-        show: false
+        show: false,
+        visible: true
       },
       {
         what: 'Brunch this weekend?',
-        who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
-        show: false
+        show: false,
+        visible: true
       },
     ]
 
@@ -103,22 +108,38 @@ $scope.archiveAll = function () {
 	var newTodos = [];
 	$scope.todos.forEach(function(item){
 	    if(item.check ===false){
-	        newTodos.push(item);
+	       
+	    } else {
+	    	 item.visible = false;
 	    }
 	});
 
-	$scope.todos = newTodos;
+
+	setTimeout( function() {
+		$scope.todos.forEach(function(item){
+	    if(item.check ===false){
+	        newTodos.push(item);
+	    }
+	});
 	
 
-$mdToast.show(
+	$scope.todos = newTodos;
+	 
+
+	$mdToast.show(
       $mdToast.simple()
         .content('Отправленно в архив записей: ' + $scope.countSelected)
         .position($scope.getToastPosition())
         .hideDelay(3000)
     );
- 
-    $scope.oneSelected = false;
-	$scope.countSelected = 0;
+
+	
+	$scope.countSelected = 0; 
+
+	} ,1000);
+
+	$scope.oneSelected = false;
+
 }
 
 function decheck(item) {
@@ -131,6 +152,7 @@ function decheck(item) {
 
 $scope.oneCheck = function(item) {
 	 
+
 	if(item.check===true) {
 		$scope.countSelected++;
 	} else {
@@ -144,18 +166,72 @@ $scope.oneCheck = function(item) {
 	}
 };
 
-
-
   $scope.showAlert = function(ev) {
-    $mdDialog.show(
+  
+$mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'dialog.tmpl.html', 
+      targetEvent: ev,
+    })
+    .then(function(answer) {
+    	 
+       
+var item = {
+
+	color: answer.color,
+	what: answer.what,
+        when: answer.when,
+        notes: answer.notes,
+        check: false,
+        show: false,
+        visible: true  
+};
+
+	$scope.todos.unshift(item);
+
+
+	$mdToast.show(
+      $mdToast.simple()
+        .content('Задание добавлено')
+        .position($scope.getToastPosition())
+        .hideDelay(3000)
+    );
+
+    }, function() {
+       /*  'You cancelled the dialog.';*/
+    });
+
+
+   /* $mdDialog.show(
       $mdDialog.alert()
         .title('This is an alert title')
         .content('You can specify some description text in here.')
         .ariaLabel('Password notification')
         .ok('Got it!')
         .targetEvent(ev)
-    );
+    );*/
   };
 
-})
+});
+
+function DialogController($scope, $mdDialog) {
+
+$scope.todo = {};
+
+ $scope.todo.color = {
+    red: Math.floor(Math.random() * 255),
+    green: Math.floor(Math.random() * 255),
+    blue: Math.floor(Math.random() * 255)
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
 

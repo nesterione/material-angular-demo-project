@@ -11,36 +11,44 @@
       </md-button>
 
       <span flex> Выбранно элементов: {{countSelected}}</span>
-      <md-button ng-click="archiveAll()"  class="md-accent  " style="width:54px; height:54px; border-radius: 50%;" aria-label="Архивировать">
+      <md-button ng-click="archiveAll()"  class="md-accent  " style="width:54px; height:54px; border-radius: 50%;" aria-label="В архив">
         <md-tooltip>
-          Архивировать
+          В архив
         </md-tooltip>
         <md-icon icon="img/icons/ic_done_all_24px.svg">
         </md-icon>
       </md-button>
     </h1>
 </md-toolbar>
-
+ 
   <md-content style="background-color: #E7E7E7; max-width: 800px; margin: 0 auto;"   >
   
     <md-list  >
       <md-item ng-repeat="item in todos">
-        <md-whiteframe ng-class="{'md-whiteframe-z2': item.check, check:item.check }" class="md-whiteframe-z1"  layout layout-align="center center">
+        <md-whiteframe   ng-show="item.visible" ng-class="{'md-whiteframe-z2': item.check, check:item.check }" class="sample-show-hide md-whiteframe-z1"  layout layout-align="center center">
         <md-item-content>
          <div class="md-tile-left">
 
          	<div style="width:56px; height: 56px; padding:0; margin-right: 10px;" ng-mouseenter="doSomething(item)" ng-mouseleave="doSomethingElse(item)" >
 			  
-			   <div ng-class="{'active-checkbox': (item.show||oneSelected)}"  class="left-box"> 
+			   <div ng-class="{'active-checkbox': (item.show||oneSelected)}" 
+
+			   ng-style="{'background-color':'rgb({{item.color.red}},{{item.color.green}},{{item.color.blue}})'}" class="left-box" > 
 				   <md-checkbox style="margin: 0;  position: relative; top: 15px; left: 19px; "  ng-show="item.show||oneSelected" ng-show="item.show||oneSelected" ng-change="oneCheck(item)" ng-model="item.check"></md-checkbox>
 					<!--<md-checkbox md-theme="indigo" class="md-indigo-theme" ng-show="item.show||oneSelected" class="md-primary"  ng-change="oneCheck(item)" ng-model="item.check" aria-label="">
-				  	</md-checkbox>-->
+				  	</md-checkbox>
+
+background: rgb({{item.color.red}},{{item.color.green}},{{item.color.blue}})
+				  	-->
 			   </div>
 			</div>
 
               <!--<img ng-src="{{item.face}}" class="face" alt="{{item.who}}">-->
           </div>
           <div class="md-tile-content">
+          
+         
+          
             <h3>{{item.what}}</h3>
             <h4>{{item.who}}</h4>
             <p>
