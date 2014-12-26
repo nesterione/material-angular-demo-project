@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="app.css"/>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <style type="text/css">
+body.layout-demo {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.demo-no-padding [layout] > div {
+  padding: 10px;
+  min-width: 30px;
+}
+
+.demo-padding [layout-padding] > div > div,
+.demo-with-padding [layout-padding] > div > div {
+  margin: 0;
+  padding: 10px;
+}
+
+.demo-no-padding [layout]:nth-child(1) > div,
+.demo-padding [layout-padding]:nth-child(1) > div > div,
+.demo-color-a {
+  border: 1px solid #0097a7;
+  background: #00BCD4;
+}
+
+.demo-no-padding [layout]:nth-child(2) > div,
+.demo-padding [layout-padding]:nth-child(2) > div > div,
+.demo-color-b {
+  border: 1px solid #689f38;
+  background: #8BC34A;
+}
+
+.demo-no-padding [layout]:nth-child(3) > div,
+.demo-padding [layout-padding]:nth-child(3) > div > div,
+.demo-color-c {
+  border: 1px solid #610C2D;
+  background: #C2185B;
+}
+
+.demo-no-padding [layout]:nth-child(4) > div,
+.demo-padding [layout-padding]:nth-child(4) > div > div,
+.demo-color-d {
+  border: 1px solid #ffa000;
+  background: #ffc107;
+}
+
+.demo-no-padding [layout]:nth-child(5) > div,
+.demo-padding [layout-padding]:nth-child(5) > div > div,
+.demo-color-e {
+  border: 1px solid #f50057;
+  background: #FF4081;
+}
+
+.demo-no-padding [layout]:nth-child(6) > div,
+.demo-padding [layout-padding]:nth-child(6) > div > div,
+.demo-color-f {
+  border: 1px solid #8e24aa;
+  background: #AB47BC;
+}
+  </style>
+</head>
+
+<body  ng-controller="MainCtrl"> <!--class="layout-demo demo-no-padding"-->
+
+<md-toolbar md-theme="indigo" class="app-toolbar md-indigo-theme md-whiteframe-z2" style="position: fixed; top:0;">
+      <div class="md-toolbar-tools" tabindex="0">
+        <button class="menu-icon" ng-click="toggleRight()" aria-label="Toggle Menu">
+          <md-icon icon="img/icons/ic_menu_24px.svg"><object class="md-icon" data="img/icons/ic_menu_24px.svg"></object></md-icon>
+        </button>
+       
+         Список задач {{oneSelected}}
+      
+     </div>
+</md-toolbar>
+
+<div style="background-color: #E7E7E7; padding-top: 80px;"  flex ng-view></div>
+
+<!--  <div layout="horizontal" style="height: 10%;">
+    <div>
+      <md-button ng-click="toggleRight()" class="md-primary">
+            Toggle right
+      </md-button>
+    </div>
+    <div flex>
+    DF
+    </div>
+  </div>
+  <div layout="vertical" style="height: 90%;">
+    <div flex ng-view></div>
+  </div>
+-->
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <div ng-controller="LeftCtrl" ng-click="close()">
+        <md-toolbar md-theme="indigo">
+          <h1 class="md-toolbar-tools">Список дел</h1>
+        </md-toolbar>
+        <md-content class="md-padding">
+          <ul>
+            <li><a href="#/view1">Список дел</a></li>
+            <li><a href="#/view2">Архив</a></li>
+          </ul>
+        </md-content>
+      </div>
+  </md-sidenav>
+<!--
+
+<div >
+   
+  </div>
+-->
+  
+  
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="app.js"></script>
+
+  <script src="bower_components/hammerjs/hammer.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+<link rel="stylesheet" href="bower_components/angular-material/themes/indigo-theme.css">
+<link rel="stylesheet" href="bower_components/angular-material/themes/red-theme.css">
+<link rel="stylesheet" href="bower_components/angular-material/themes/cyan-theme.css">
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+
+<link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="bower_components/core-icon/core-icon.html">
+</body>
+</html>
