@@ -1,49 +1,7 @@
 /* app css stylesheet */
-
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-
-.menu-icon {
-  border:0;
-  background: none;
-}
-
-.one {
-  background-color: red;
-}
-
-.two {
-  background-color: green;
-}
-
-.three {
-  background-color: blue;
+body {
+  height: none; 
+  background-color: #E7E7E7;
 }
 
 .box {
@@ -53,10 +11,35 @@
 
 }
 
+.fix-top {
+  position: fixed; 
+  top:0;
+}
+
+.nornal-btn {
+  width: 56px; 
+  height: 56px;
+}
+
+.nornal-round-btn {
+  width: 56px; 
+  height: 56px;
+  border-radius: 50%;
+}
+
+.float-btn {
+  height:56px; 
+  width: 56px; 
+  position: fixed; 
+  bottom: 55px; 
+  right: 55px; 
+}
+
 md-whiteframe {
   background: #fff;
   margin: 20px;
-  padding: 20px; }
+  padding: 20px; 
+}
 
 .check {
     background-color: #E8EAF6;
@@ -115,4 +98,102 @@ md-whiteframe {
 
   
 
- 
+ md-backdrop {
+  position: fixed !important;
+ }
+
+ md-toast {
+    position: fixed !important;
+
+ }
+
+ md-sidenav {
+  position: fixed !important;
+ }
+
+ md-tooltip {
+  position: fixed !important;
+ }
+
+ .menu-item {
+  background: none;
+  border-width: 0;
+  cursor: pointer;
+  display: block;
+  color: #333;
+  font-size: inherit;
+  line-height: 40px;
+  max-height: 40px;
+  opacity: 1;
+  margin: 0;
+  outline: none;
+  padding: 0px 28px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  z-index: 1;
+  -webkit-transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  -webkit-transition-property: max-height, background-color, opacity;
+  -moz-transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  -moz-transition-property: max-height, background-color, opacity;
+  transition: 0.45s cubic-bezier(0.35, 0, 0.25, 1);
+  transition-property: max-height, background-color, opacity;
+}
+.menu-item.ng-hide {
+  max-height: 0;
+  opacity: 0;
+}
+.menu-item:hover {
+  color: #999;
+}
+.menu-item:focus {
+  font-weight: bold;
+}
+.menu-item.menu-title {
+  color: #888;
+  font-size: 14px;
+  padding-left: 16px;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 0.35s cubic-bezier(0.35, 0, 0.25, 1);
+}
+.menu-item.menu-title:hover,
+.menu-item.menu-title.active {
+  color: #1976d2;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+}
+
+.menu-separator-icon {
+  margin: 0;
+}
+.menu-module-name {
+  opacity: 0.6;
+  font-size: 18px;
+}
+
+.list-cont {
+  background-color: #E7E7E7 !important; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  height: 100%; 
+  overflow: hidden; 
+}
+
+.list-cb {
+  margin: 0;  
+  position: relative; 
+  top: 15px; 
+  left: 19px;
+}
+
+.list-check-area {
+  width:56px; 
+  height: 56px; 
+  padding:0; 
+  margin-right: 10px;
+}

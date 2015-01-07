@@ -11,7 +11,7 @@ angular.module('myApp.view1', ['ngRoute','ngMaterial'])
 
 .controller('View1Ctrl', function($scope, $mdDialog, $mdToast, $animate) {
   	
-   $scope.todos = [
+  $scope.todos = [
       {
       	color: {
     		red: 125,
@@ -23,54 +23,75 @@ angular.module('myApp.view1', ['ngRoute','ngMaterial'])
         notes: " I'll be in your neighborhood doing errands",
         check: false,
         show: false,
-        visible: true // для анимации удаления
+        visible: true, // для анимации удаления
+        btns: false
       },
       {
+      	color: {
+    		red: 125,
+    		green: 225,
+    		blue: 0
+      	},
         what: 'Brunch this weekend?',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
         show: false,
-        visible: true
+        visible: true,
+        btns: false
       },
       {
+      	color: {
+    		red: 25,
+    		green: 15,
+    		blue: 50
+      	},
         what: 'Brunch this weekend?',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
         show: false,
-        visible: true
+        visible: true,
+        btns: false
       },
       {
+      	color: {
+    		red: 125,
+    		green: 5,
+    		blue: 150
+      	},
         what: 'Brunch this weekend?',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
         show: false,
-        visible: true
+        visible: true,
+        btns: false
       },
       {
+      	color: {
+    		red: 25,
+    		green: 5,
+    		blue: 150
+      	},
         what: 'Brunch this weekend?',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands",
         check: false,
         show: false,
-        visible: true
+        visible: true,
+        btns: false
       },
     ]
 
 
+$scope.showItem = function(item ) {
+ 	item.show = true;
+};
 
-  $scope.alert = '';
-    $scope.doSomething = function(item ) {
-    	item.show = true;
-    	//$scope.isShow= true;
-    };
-
-	$scope.doSomethingElse = function(item ) {
-		item.show = false;
-		//$scope.isShow= false;
-    };
+$scope.hideItem = function(item ) {
+	item.show = false;
+};
 
 $scope.countSelected = 0;
 $scope.oneSelected= false;
@@ -88,6 +109,28 @@ $scope.deselectAll = function(item) {
 		$scope.oneSelected = false;
 	}
 }
+
+$scope.remove = function(item) {
+	item.visible = false;
+	var idx = $scope.todos.indexOf(item);
+	
+
+
+setTimeout( function() {
+	$scope.todos.splice(idx,1);
+	 
+	$mdToast.show(
+    $mdToast.simple()
+      .content('Запись отправлена в архив')
+      .position($scope.getToastPosition())
+      .hideDelay(3000)
+  );
+
+		
+	$scope.countSelected = 0; 
+	} ,1000);
+
+};
 
  $scope.toastPosition = {
     bottom: true,
@@ -200,16 +243,6 @@ var item = {
     }, function() {
        /*  'You cancelled the dialog.';*/
     });
-
-
-   /* $mdDialog.show(
-      $mdDialog.alert()
-        .title('This is an alert title')
-        .content('You can specify some description text in here.')
-        .ariaLabel('Password notification')
-        .ok('Got it!')
-        .targetEvent(ev)
-    );*/
   };
 
 });
@@ -234,4 +267,3 @@ $scope.todo = {};
     $mdDialog.hide(answer);
   };
 }
-
